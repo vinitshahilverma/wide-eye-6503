@@ -1,6 +1,5 @@
 package com.soulfood.model;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,19 +15,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Address {
+public class Category {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer addressId;
-	private String buildingName;
-	private String area;
-	private String city;
-	private String state;
-	private String country;
-	private String pincode;
-	
-	
-	
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer catId;
+    private String categoryName;
+
+
 }
