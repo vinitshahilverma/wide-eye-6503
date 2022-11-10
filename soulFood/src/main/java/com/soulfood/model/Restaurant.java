@@ -9,11 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.Generated;
-import org.hibernate.validator.cfg.context.Cascadable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
