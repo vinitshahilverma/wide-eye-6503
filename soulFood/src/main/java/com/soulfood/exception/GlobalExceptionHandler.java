@@ -54,5 +54,30 @@ public class GlobalExceptionHandler {
 		
 	}
 	
+	@ExceptionHandler(CustomerNotFound.class)
+    public ResponseEntity<MyErrorDetails> CustomerNotFOundHandler(CustomerNotFound cnf,WebRequest req){
+		
+		MyErrorDetails err = new MyErrorDetails();
+		
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMessage(cnf.getMessage());
+		err.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+		
+	}
+
+	@ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<MyErrorDetails> illegealArgumentHandler(IllegalArgumentException cnf,WebRequest req){
+		
+		MyErrorDetails err = new MyErrorDetails();
+		
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMessage(cnf.getMessage());
+		err.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+		
+	}
 
 }
