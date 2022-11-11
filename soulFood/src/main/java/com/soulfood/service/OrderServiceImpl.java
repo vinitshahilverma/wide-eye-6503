@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.soulfood.exception.OrderException;
-import com.soulfood.model.Order;
+import com.soulfood.model.OrderDetails;
 import com.soulfood.repository.OrderRepo;
 
 
@@ -17,7 +17,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepo or;
 
     @Override
-    public Order addOrder(Order order) throws OrderException {
+    public OrderDetails addOrder(OrderDetails order) throws OrderException {
         if(order!=null){
             or.save(order);
             return order;
@@ -29,12 +29,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order updateOrder(Order order) throws OrderException {
-        Optional<Order> opt=or.findById(order.getOrderId());
+    public OrderDetails updateOrder(OrderDetails order) throws OrderException {
+        Optional<OrderDetails> opt=or.findById(order.getOrderId());
 		
 		if(opt.isPresent()) {
 			
-			Order updatedCustomer= or.save(order);
+			OrderDetails updatedCustomer= or.save(order);
 			return updatedCustomer;
 			
 		}else
@@ -42,12 +42,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order removeOrder(Integer orderId) throws OrderException {
-        Optional<Order> opt=or.findById(orderId);
+    public OrderDetails removeOrder(Integer orderId) throws OrderException {
+        Optional<OrderDetails> opt=or.findById(orderId);
 	      
         if(opt.isPresent()) {
             
-            Order deletedCustomer=opt.get();
+            OrderDetails deletedCustomer=opt.get();
             or.delete(deletedCustomer);
             
             return deletedCustomer;
@@ -58,11 +58,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order viewOrder(Integer orderId) throws OrderException {
-        Optional<Order> opt=or.findById(orderId);
+    public OrderDetails viewOrder(Integer orderId) throws OrderException {
+        Optional<OrderDetails> opt=or.findById(orderId);
          
         if(opt.isPresent()) {
-            Order customer=opt.get();
+            OrderDetails customer=opt.get();
             return customer;
         }
         else {

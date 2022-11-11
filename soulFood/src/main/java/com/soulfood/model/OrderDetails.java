@@ -18,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Order {
+public class OrderDetails {
     
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)

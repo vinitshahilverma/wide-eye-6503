@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.soulfood.exception.OrderException;
-import com.soulfood.model.Order;
+import com.soulfood.model.OrderDetails;
+import com.soulfood.model.OrderDetails;
 import com.soulfood.service.OrderService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -23,36 +24,36 @@ public class OrderController {
     private OrderService os;
 
     @PostMapping("/AddOrder")
-    public ResponseEntity<Order> addOrder(@RequestBody Order order) throws OrderException{
+    public ResponseEntity<OrderDetails> addOrder(@RequestBody OrderDetails order) throws OrderException{
 
-        Order AddOrder = os.addOrder(order);
+        OrderDetails AddOrder = os.addOrder(order);
         
-        return new ResponseEntity<Order>(AddOrder,HttpStatus.CREATED);
+        return new ResponseEntity<OrderDetails>(AddOrder,HttpStatus.CREATED);
     }
 
 
     @PutMapping("/updateOrder")
-	public ResponseEntity<Order> updateCustomer( @RequestBody Order order)throws OrderException{
+	public ResponseEntity<OrderDetails> updateCustomer( @RequestBody OrderDetails order)throws OrderException{
 		
-		Order updatedOrder=os.updateOrder(order);
+		OrderDetails updatedOrder=os.updateOrder(order);
 		
-		return new ResponseEntity<Order>(updatedOrder,HttpStatus.ACCEPTED);
+		return new ResponseEntity<OrderDetails>(updatedOrder,HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/removeOrder/{id}")
-	public ResponseEntity<Order> removeCustomer(@PathVariable("id") Integer orderId)throws OrderException{
+	public ResponseEntity<OrderDetails> removeCustomer(@PathVariable("id") Integer orderId)throws OrderException{
 		
-		Order removedOrder=os.removeOrder(orderId);
+		OrderDetails removedOrder=os.removeOrder(orderId);
 		
-		return new ResponseEntity<Order>(removedOrder,HttpStatus.ACCEPTED);
+		return new ResponseEntity<OrderDetails>(removedOrder,HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/viewOrder/{id}")
-	public ResponseEntity<Order> viewOrder(@PathVariable("id") Integer orderId)throws OrderException{
+	public ResponseEntity<OrderDetails> viewOrder(@PathVariable("id") Integer orderId)throws OrderException{
 		
-		Order order=os.viewOrder(orderId);
+		OrderDetails order=os.viewOrder(orderId);
 		
-		return new ResponseEntity<Order>(order,HttpStatus.ACCEPTED);
+		return new ResponseEntity<OrderDetails>(order,HttpStatus.ACCEPTED);
 	}
 
     
