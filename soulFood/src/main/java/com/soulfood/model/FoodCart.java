@@ -34,8 +34,7 @@ public class FoodCart {
     @OneToMany (cascade = CascadeType.ALL)
     private List<Item> itemList = new ArrayList<>();
     
-    @OneToMany
-    private List<OrderDetails> orderList = new ArrayList<>();
+  
     
     
 }
