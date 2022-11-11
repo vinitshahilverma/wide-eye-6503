@@ -1,59 +1,47 @@
 package com.soulfood.controller;
 
-import javax.validation.Valid;
-
+import com.soulfood.model.Customer;
+import com.soulfood.exception.CustomerException;
+import com.soulfood.exception.CustomerNotFoundException;
+import com.soulfood.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.soulfood.exception.CustomerNotFound;
-import com.soulfood.model.Customer;
-import com.soulfood.service.CustomerService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping (value = "/customer")
 public class CustomerController {
- 
-	@Autowired
-	private CustomerService CS;
-	
-	@PostMapping("/AddCustomer")
-	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer)throws CustomerNotFound{
-		
-		Customer AddedCustomer=CS.addCustomer(customer);
-		
-		return new ResponseEntity<Customer>(AddedCustomer,HttpStatus.ACCEPTED);
-	}
-	
-	@PutMapping("/updateCustomer")
-	public ResponseEntity<Customer> updateCustomer( @RequestBody Customer customer)throws CustomerNotFound{
-		
-		Customer updatedCustomer=CS.updateCustomer(customer);
-		
-		return new ResponseEntity<Customer>(updatedCustomer,HttpStatus.ACCEPTED);
-	}
-	
-	@DeleteMapping("/removeCustomer/{id}")
-	public ResponseEntity<Customer> removeCustomer(@PathVariable("id") Integer customerId)throws CustomerNotFound{
-		
-		Customer removedCustomer=CS.removeCustomer(customerId);
-		
-		return new ResponseEntity<Customer>(removedCustomer,HttpStatus.ACCEPTED);
-	}
-	
-	@GetMapping("/viewCustomer/{id}")
-	public ResponseEntity<Customer> viewCustomer(@PathVariable("id") Integer customerId)throws CustomerNotFound{
-		
-		Customer Customer=CS.viewCustomer(customerId);
-		
-		return new ResponseEntity<Customer>(Customer,HttpStatus.ACCEPTED);
-	}
-	
-	
+
+    @Autowired
+    private CustomerService customerService;
+
+
+    @GetMapping (value = "/view/{id}")
+    public ResponseEntity<Customer> getCustomerHandler(@PathVariable ("id") Integer id) throws CustomerException{
+        return new ResponseEntity<>(customerService.viewCustomer(id),HttpStatus.FOUND);
+    }
+
+    @PostMapping (value = "/add")
+    public ResponseEntity<Customer> addCustomerHandler(@RequestBody Customer customer) throws CustomerException{
+
+        return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping (value = "/update/{id}")
+    public ResponseEntity<Customer> updateCustomerHandler(@PathVariable ("id") Integer id, @RequestBody Customer customer) throws CustomerException, CustomerNotFoundException{
+
+        return new ResponseEntity<>(customerService.updateCustomer(id, customer), HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping (value = "/delete/{id}")
+    public ResponseEntity<Customer> deleteCustomerhandler(@PathVariable ("id") Integer id) throws CustomerException, CustomerNotFoundException{
+
+        return new ResponseEntity<>(customerService.removeCustomer(id),HttpStatus.OK);
+    }
+
+    @GetMapping (value = "/")
+    public ResponseEntity<String> generalMessage (){
+        return new ResponseEntity<>("This is Customer Controller visit https://github.com/g-utsav/FoodDeliveryApp for URL extension Detail.",HttpStatus.OK);
+    }
 }

@@ -1,70 +1,88 @@
 package com.soulfood.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
-
 @Entity
-public class Customer{
-    
+public class Customer {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
-	
-	@NotNull(message = "firstName field should not be null")
-	@Size(min = 3,max=30,message = "name of min length should be 3 and max be 30")
+
+	@NotNull
 	private String firstName;
-	
-	@NotNull(message = "lastName field should not be null")
-	@Size(min = 3,max=30,message = "name of min length should be 3 and max be 30")
-	private String lastname;
-	
-	@NotNull(message = "age field should not be null")
-	@Max(100)
+
+	@NotNull
+	private String lastName;
+
+	@NotNull
+	@Min(15)
 	private Integer age;
-	
-	@NotNull(message = "gender field should not be null")
+
+	@NotNull
 	private String gender;
-	
-	@NotNull(message = "mobileNumber field should not be null")
+
+	@Pattern(regexp = "[0-9]{10}",message="Mobile should be 10 digit")
 	private String mobileNumber;
-	
+
 	@Email
 	private String email;
-	
-	@NotNull(message = "Address field should not be null")
-	@OneToOne
+
+	@NotNull
+	@Size(min=5, max=12, message="Password length should be between 5 to 12")
+	private String password;
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
-	
-	
-	
-	
-	
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@NotNull
+	private FoodCart cart;
+
 	public Customer() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(Integer customerId, String firstName, String lastname, Integer age, String gender, String mobileNumber,
-			Address address, String email) {
-		super();
+	public Customer(Integer customerId, String firstName, String lastName, Integer age, String gender, String mobileNumber, String email, String password, Address address, FoodCart cart) {
 		this.customerId = customerId;
 		this.firstName = firstName;
-		this.lastname = lastname;
+		this.lastName = lastName;
 		this.age = age;
 		this.gender = gender;
 		this.mobileNumber = mobileNumber;
-		this.address = address;
 		this.email = email;
+		this.password = password;
+		this.address = address;
+		this.cart = cart;
 	}
+
+	/*public Customer(Integer customerId, @NotNull String firstName, @NotNull String lastName, @NotNull @Min(15) Integer age,
+					@NotNull String gender, Long mobileNumber, @Email String email,
+					@NotNull @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})") String password,
+					Address address, Cart cart) {
+		super();
+		this.customerId = customerId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.gender = gender;
+		this.mobileNumber = mobileNumber;
+		this.email = email;
+		this.password = password;
+		this.address = address;
+		this.cart = cart;
+	}*/
 
 	public Integer getCustomerId() {
 		return customerId;
@@ -82,12 +100,12 @@ public class Customer{
 		this.firstName = firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public Integer getAge() {
@@ -114,14 +132,6 @@ public class Customer{
 		this.mobileNumber = mobileNumber;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddres(Address address) {
-		this.address = address;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -130,13 +140,43 @@ public class Customer{
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public FoodCart getCart() {
+		return cart;
+	}
+
+	public void setCart(FoodCart cart) {
+		this.cart = cart;
+	}
+
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastname=" + lastname + ", age="
-				+ age + ", gender=" + gender + ", mobileNumber=" + mobileNumber + ", address=" + address + ", email="
-				+ email + "]";
+		return "Customer{" +
+				"customerId=" + customerId +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", age=" + age +
+				", gender='" + gender + '\'' +
+				", mobileNumber=" + mobileNumber +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", address=" + address +
+				", cart=" + cart +
+				'}';
 	}
-	
-	
-	
 }

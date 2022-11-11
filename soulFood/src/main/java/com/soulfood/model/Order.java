@@ -31,10 +31,41 @@ public class Order {
 
     private String orderStatus;
 
-    
+	public Integer getOrderId() {
+		return orderId;
+	}
 
-    
-    
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+
+	public LocalDateTime getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(LocalDateTime orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public FoodCart getFoodCart() {
+		return foodCart;
+	}
+
+	public void setFoodCart(FoodCart foodCart) {
+		this.foodCart = foodCart;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+
+
+	
 
 
 }

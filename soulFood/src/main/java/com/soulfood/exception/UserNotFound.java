@@ -1,10 +1,14 @@
 package com.soulfood.exception;
 
-import lombok.NoArgsConstructor;
+public class UserNotFound extends  Exception{
+	
+	public UserNotFound() {
+		
+	}
+	
+    public UserNotFound(String message) {
+    	super(message);
+		
+	}
 
-@NoArgsConstructor
-public class UserNotFound extends  RuntimeException{
-	public UserNotFound(String message) {
- 	   super(message);
-    }
 }
