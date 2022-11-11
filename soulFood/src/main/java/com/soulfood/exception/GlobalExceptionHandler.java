@@ -79,5 +79,18 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
 		
 	}
+	
+	@ExceptionHandler(OrderException.class)
+    public ResponseEntity<MyErrorDetails> orderNotFOundHandler(OrderException cnf,WebRequest req){
+		
+		MyErrorDetails err = new MyErrorDetails();
+		
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMessage(cnf.getMessage());
+		err.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+		
+	}
 
 }
