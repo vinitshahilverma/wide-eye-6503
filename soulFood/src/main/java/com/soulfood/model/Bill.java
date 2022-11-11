@@ -2,6 +2,7 @@ package com.soulfood.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class Bill {
 	private Integer billId;
 	private LocalDateTime billDate;
 	
-	@OneToOne
+	@OneToOne (cascade = CascadeType.ALL)
 	private OrderDetails order;
 	
 	private Integer totalItem;
