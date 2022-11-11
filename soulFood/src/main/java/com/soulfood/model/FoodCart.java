@@ -1,5 +1,6 @@
 package com.soulfood.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,8 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 public class FoodCart {
 
@@ -23,47 +32,10 @@ public class FoodCart {
     private Customer customer;
 
     @OneToMany (cascade = CascadeType.ALL)
-    private List<Item> itemList;
-
-    public FoodCart() {
-    }
-
-    public FoodCart(int cartId, Customer customer, List<Item> itemList) {
-        this.cartId = cartId;
-        this.customer = customer;
-        this.itemList = itemList;
-    }
-
-    public int getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public List<Item> getItemList() {
-        return itemList;
-    }
-
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
-    }
-
-    @Override
-    public String toString() {
-        return "FoodCart [cartId=" + cartId + ", customer=" + customer + ", itemList=" + itemList + "]";
-    }
-
+    private List<Item> itemList = new ArrayList<>();
     
+    @OneToMany
+    private List<OrderDetails> orderList = new ArrayList<>();
     
     
 }

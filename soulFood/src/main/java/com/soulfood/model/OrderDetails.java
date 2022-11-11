@@ -26,15 +26,8 @@ public class OrderDetails {
 
     private LocalDateTime orderDate;
 
-    @OneToOne 
-    private FoodCart foodCart;
 
     private String orderStatus;
-
-    
-
-    
-    
 
 
 }
