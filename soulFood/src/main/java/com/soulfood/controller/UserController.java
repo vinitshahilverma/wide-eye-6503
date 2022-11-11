@@ -3,62 +3,41 @@ package com.soulfood.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.soulfood.exception.UserNotFound;
+import com.soulfood.exception.UserException;
 import com.soulfood.model.User;
-import com.soulfood.service.UserInterferce;
+import com.soulfood.service.UserService;
 
 @RestController
 public class UserController {
-	
+
 	@Autowired
-	private UserInterferce ui;
+	private UserService cService;
 	
-
-
-	@PostMapping("/bhukkad/users")
-	public ResponseEntity<User> storeUser(@RequestBody User u){
-		
-		User cm = ui.addUser(u);
 	
+	@PostMapping("/customers")
+	public ResponseEntity<User> saveCustomer(@RequestBody User user) throws UserException {
 		
-		return new ResponseEntity<User>(cm, HttpStatus.OK);
+		User savedCustomer= cService.createUser(user);
+		
+		
+		return new ResponseEntity<User>(savedCustomer,HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/bhukkad/users/{id}")
-    public ResponseEntity<User>	 getUserById(@PathVariable("id") Integer  userId ){
+	@PutMapping("/customers")
+	public  ResponseEntity<User> updateCustomer(@RequestBody User user,@RequestParam(required = false) String key ) throws UserException {
 		
-		User u =  ui.findUserById(userId);
 		
-		if(u!=null) {
-			return new ResponseEntity<User> (u, HttpStatus.OK);
-		}
-		else{
-			throw new UserNotFound("UserId not Found.."+ userId);
-		}
-	}
-	
-	@PutMapping("/bhukkad/users/{id}")
-	public ResponseEntity<User> updateUser(@RequestBody User u, @PathVariable("id") Integer id){
+		User updatedCustomer= cService.updateUser(user, key);
+				
+		return new ResponseEntity<User>(updatedCustomer,HttpStatus.OK);
 		
-		User cm = ui.updatePassword(id, u);
-		
-		return new ResponseEntity<User>(cm, HttpStatus.OK);
-	}
-	
-	@DeleteMapping("/bhukkad/users/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable("id") Integer id){
-		
-		User cm = ui.deleteUserbyId(id);
-		
-		return new ResponseEntity<User>(cm, HttpStatus.OK);
 	}
 	
 }
+
