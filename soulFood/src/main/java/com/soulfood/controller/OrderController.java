@@ -1,5 +1,7 @@
 package com.soulfood.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +56,14 @@ public class OrderController {
 		OrderDetails order=os.viewOrder(orderId);
 		
 		return new ResponseEntity<OrderDetails>(order,HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping("/viewAllOrder")
+	public ResponseEntity<List<OrderDetails>> viewAllOrder()throws OrderException{
+		
+		List<OrderDetails> orders = os.getAllOrderDetails();
+		
+		return new ResponseEntity<List<OrderDetails>>(orders,HttpStatus.OK);
 	}
 
     
