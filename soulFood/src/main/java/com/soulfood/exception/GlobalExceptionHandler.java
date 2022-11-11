@@ -54,8 +54,8 @@ public class GlobalExceptionHandler {
 		
 	}
 	
-	@ExceptionHandler(CustomerNotFoundException.class)
-    public ResponseEntity<MyErrorDetails> CustomerNotFOundHandler(CustomerNotFoundException cnf,WebRequest req){
+	@ExceptionHandler(CustomerNotFound.class)
+    public ResponseEntity<MyErrorDetails> CustomerNotFOundHandler(CustomerNotFound cnf,WebRequest req){
 		
 		MyErrorDetails err = new MyErrorDetails();
 		
