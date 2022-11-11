@@ -1,7 +1,11 @@
 package com.soulfood.service;
 
+import java.util.List;
+
 import com.soulfood.exception.OrderException;
 import com.soulfood.model.OrderDetails;
+
+
 
 public interface OrderService {
     
@@ -13,6 +17,6 @@ public interface OrderService {
 
     public OrderDetails viewOrder(Integer orderId) throws OrderException;
 
-    
+    public List<OrderDetails> getAllOrderDetails() throws OrderException;
 
 }

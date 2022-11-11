@@ -1,5 +1,7 @@
 package com.soulfood.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +72,23 @@ public class OrderServiceImpl implements OrderService {
             
         }
     }
+
+    @Override
+    public List<OrderDetails> getAllOrderDetails() throws OrderException{
+        List<OrderDetails> allOrders = or.findAll();
+		
+		if(allOrders.size()>0) {
+            List<OrderDetails> list = new ArrayList<>(allOrders);
+			return list;
+		
+	    }
+        else {
+            throw new OrderException("Order not found with Id");
+            
+        }
+    }
+
+
+  
     
 }
