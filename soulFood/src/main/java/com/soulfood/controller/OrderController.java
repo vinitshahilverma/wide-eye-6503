@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.soulfood.exception.OrderException;
 import com.soulfood.model.OrderDetails;
-import com.soulfood.model.OrderDetails;
 import com.soulfood.service.OrderService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -33,9 +32,9 @@ public class OrderController {
 
 
     @PutMapping("/updateOrder")
-	public ResponseEntity<OrderDetails> updateCustomer( @RequestBody OrderDetails order)throws OrderException{
+	public ResponseEntity<OrderDetails> updateCustomer( @RequestBody OrderDetails order, @PathVariable("id") Integer id)throws OrderException{
 		
-		OrderDetails updatedOrder=os.updateOrder(order);
+		OrderDetails updatedOrder=os.updateOrder(order,id);
 		
 		return new ResponseEntity<OrderDetails>(updatedOrder,HttpStatus.ACCEPTED);
 	}
