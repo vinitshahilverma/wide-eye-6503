@@ -34,8 +34,8 @@ public class OrderServiceImpl implements OrderService {
 		
 		if(opt.isPresent()) {
 			
-			OrderDetails updatedCustomer= or.save(order);
-			return updatedCustomer;
+			OrderDetails updatedOrder= or.save(order);
+			return updatedOrder;
 			
 		}else
 			throw new OrderException("Invalid Order detils"); 
@@ -47,10 +47,10 @@ public class OrderServiceImpl implements OrderService {
 	      
         if(opt.isPresent()) {
             
-            OrderDetails deletedCustomer=opt.get();
-            or.delete(deletedCustomer);
+            OrderDetails deletedOrder=opt.get();
+            or.delete(deletedOrder);
             
-            return deletedCustomer;
+            return deletedOrder;
         }
         else {
             throw new OrderException("Order not found with Id"+orderId);
@@ -62,8 +62,8 @@ public class OrderServiceImpl implements OrderService {
         Optional<OrderDetails> opt=or.findById(orderId);
          
         if(opt.isPresent()) {
-            OrderDetails customer=opt.get();
-            return customer;
+            OrderDetails order=opt.get();
+            return order;
         }
         else {
             throw new OrderException("Order not found with Id: "+orderId);
