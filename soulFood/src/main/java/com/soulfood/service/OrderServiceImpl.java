@@ -29,8 +29,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDetails updateOrder(OrderDetails order) throws OrderException {
-        Optional<OrderDetails> opt=or.findById(order.getOrderId());
+    public OrderDetails updateOrder(OrderDetails order, Integer id) throws OrderException {
+        Optional<OrderDetails> opt=or.findById(id);
 		
 		if(opt.isPresent()) {
 			
