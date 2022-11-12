@@ -74,7 +74,6 @@ public class ItemController {
 		
 		List<Item> itemList = iService.viewAllItems(res);
 		
-		
 		return new ResponseEntity<List<Item>>(itemList, HttpStatus.ACCEPTED);
 		
 	}
