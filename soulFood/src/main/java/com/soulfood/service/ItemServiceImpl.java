@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.soulfood.exception.CategoryException;
 import com.soulfood.exception.ItemException;
+import com.soulfood.exception.RestaurantException;
 import com.soulfood.model.Category;
 import com.soulfood.model.Item;
 import com.soulfood.model.Restaurant;
@@ -19,6 +20,10 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Autowired
 	public ItemRepo iRepo;
+	
+	@Autowired
+	public RestaurantService rService;
+	
 	
 	@Autowired
 	public CategoryRepo cRepo;
@@ -71,11 +76,12 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public List<Item> viewAllItems(Restaurant res) throws ItemException {
+	public List<Item> viewAllItems(Restaurant res) throws ItemException, RestaurantException {
 		// TODO Auto-generated method stub
 		
+		Restaurant rest = rService.viewRestaurant(res.getRestaurantId());
 		
-		return null;
+		return rest.getItemList();
 	}
 
 	@Override
