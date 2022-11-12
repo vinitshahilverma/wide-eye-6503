@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.soulfood.exception.ItemException;
 import com.soulfood.exception.RestaurantException;
+import com.soulfood.model.Item;
 import com.soulfood.model.Restaurant;
+import com.soulfood.repository.ItemRepo;
 import com.soulfood.repository.RestaurantRepo;
 
 @Service
@@ -14,6 +17,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 	
 	@Autowired
 	public RestaurantRepo rRepo;
+	
+	public ItemRepo iRepo;
 	
 	
 
@@ -56,13 +61,29 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public List<Restaurant> viewRestaurantByCity(String location) throws RestaurantException {
 		// TODO Auto-generated method stub
-		return null;
+		
+		List<Restaurant> list = rRepo.getNearByRestaurant(location);
+		
+		if(list.size() == 0) {
+			throw new RestaurantException("Restaurant Not available for location :" + location);
+		}
+		return list;
 	}
 
 	@Override
-	public List<Restaurant> viewRestaurantByItemName(String location) throws RestaurantException {
+	public List<Restaurant> viewRestaurantByItemName(String name) throws RestaurantException, ItemException {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Item item = iRepo.findByItemName(name);
+		if(item == null) {
+			throw new ItemException("Item not found with name :" + name);
+		}
+		
+		if(item.getRestaurant().size() == 0) {
+			throw new RestaurantException("Item Not available in Restaurant right Now");
+		}
+		
+		return item.getRestaurant();
 	}
 
 }

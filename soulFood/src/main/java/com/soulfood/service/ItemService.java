@@ -21,6 +21,6 @@ public interface ItemService {
 	
 	public List<Item> viewAllItems(Restaurant res) throws ItemException;;
 	
-	public List<Item> viewAllItemsByName(String name) throws ItemException;;
+	public Item viewAllItemsByName(String name) throws ItemException;;
 	
 }
