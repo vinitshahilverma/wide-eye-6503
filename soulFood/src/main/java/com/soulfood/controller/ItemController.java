@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.soulfood.exception.ItemException;
+import com.soulfood.exception.RestaurantException;
 import com.soulfood.model.Category;
 import com.soulfood.model.Item;
 import com.soulfood.model.Restaurant;
@@ -69,7 +70,7 @@ public class ItemController {
 	}
 	
 	@GetMapping("/itemList")
-	public ResponseEntity<List<Item>> viewAllItems(@RequestBody Restaurant res) throws ItemException{
+	public ResponseEntity<List<Item>> viewAllItems(@RequestBody Restaurant res) throws ItemException, RestaurantException{
 		
 		List<Item> itemList = iService.viewAllItems(res);
 		
@@ -78,11 +79,11 @@ public class ItemController {
 	}
 
 	@GetMapping("/itemByName/{name}")
-	public ResponseEntity<List<Item>> viewItemByName(@PathVariable String name) throws ItemException{
+	public ResponseEntity<Item> viewItemByName(@PathVariable String name) throws ItemException{
 	
-		List<Item> itemList = iService.viewAllItemsByName(name);
+		Item itemList = iService.viewAllItemsByName(name);
 		
-		return new ResponseEntity<List<Item>>(itemList, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Item>(itemList, HttpStatus.ACCEPTED);
 	}
 
 }
