@@ -28,7 +28,7 @@ public class Restaurant {
     private Integer restaurantId;
     private String restaurantName;
 
-    @OneToOne 
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
     @ManyToMany (cascade = CascadeType.ALL)
