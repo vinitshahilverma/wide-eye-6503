@@ -15,6 +15,19 @@ import com.soulfood.model.MyErrorDetails;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<MyErrorDetails> LoginException(LoginException ee,WebRequest req){
+		
+		MyErrorDetails err = new MyErrorDetails();
+		
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMessage(ee.getMessage());
+		err.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+		
+	}
+	
 	@ExceptionHandler(BillException.class)
 	public ResponseEntity<MyErrorDetails> billexceptionHandler(BillException ee,WebRequest req){
 		
