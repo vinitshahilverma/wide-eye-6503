@@ -36,7 +36,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public Restaurant updateRestaurant(Restaurant rest) throws RestaurantException {
 		// TODO Auto-generated method stub
 		Restaurant res = rRepo.findById(rest.getRestaurantId()).orElseThrow(() -> new RestaurantException("Restaurant not available for updation"));
-		return rRepo.save(rest);
+		return rRepo.save(res);
 		
 	}
 

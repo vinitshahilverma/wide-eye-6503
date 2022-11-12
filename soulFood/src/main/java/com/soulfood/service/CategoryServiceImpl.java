@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 		Category category = cRepo.findById(cat.getCatId()).orElseThrow(() -> new CategoryException("Category not available for updation"));
 		
 		
-		return cRepo.save(cat);
+		return cRepo.save(category);
 	}
 
 	
