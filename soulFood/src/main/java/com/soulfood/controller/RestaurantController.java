@@ -1,5 +1,7 @@
 package com.soulfood.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.soulfood.exception.ItemException;
 import com.soulfood.exception.RestaurantException;
 import com.soulfood.model.Restaurant;
 import com.soulfood.service.RestaurantService;
@@ -54,4 +57,23 @@ public class RestaurantController {
 		
 		return new ResponseEntity<>(res, HttpStatus.CREATED);
 	}
+	
+	
+	@GetMapping("viewNearRestaurant/{location}")
+	public ResponseEntity<List<Restaurant>> viewNearRestaurant(@PathVariable String location) throws RestaurantException{
+		
+		List<Restaurant> list = rService.viewRestaurantByCity(location);
+		
+		return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
+	}
+	
+	
+	@GetMapping("viewRestaurantByItem/{name}")
+	public ResponseEntity<List<Restaurant>> viewRestaurantByItemName(@PathVariable String name) throws RestaurantException, ItemException{
+		
+		List<Restaurant> list = rService.viewRestaurantByItemName(name);
+		
+		return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
+	}
+	
 }

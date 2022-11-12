@@ -79,15 +79,15 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public List<Item> viewAllItemsByName(String name) throws ItemException {
+	public Item viewAllItemsByName(String name) throws ItemException {
 		// TODO Auto-generated method stub
 		
-		List<Item> itemList = iRepo.findByItemName(name);
+		Item item = iRepo.findByItemName(name);
 		
-		if(itemList.size() == 0) {
+		if(item == null) {
 			throw new ItemException("Item not availabel with this category");
 		}
-		return itemList;
+		return item;
 	}
 
 }
