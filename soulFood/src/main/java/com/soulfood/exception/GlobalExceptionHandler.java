@@ -81,8 +81,8 @@ public class GlobalExceptionHandler {
 		
 	}
 	
-	@ExceptionHandler(ResturantException.class)
-	public ResponseEntity<MyErrorDetails> resturantexceptionHandler(ResturantException ee,WebRequest req){
+	@ExceptionHandler(RestaurantException.class)
+	public ResponseEntity<MyErrorDetails> resturantexceptionHandler(RestaurantException ee,WebRequest req){
 		
 		MyErrorDetails err = new MyErrorDetails();
 		
