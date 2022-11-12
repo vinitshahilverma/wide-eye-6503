@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.soulfood.exception.CategoryException;
 import com.soulfood.exception.ItemException;
 import com.soulfood.model.Category;
 import com.soulfood.model.Item;
@@ -39,7 +38,7 @@ public class ItemServiceImpl implements ItemService {
 		// TODO Auto-generated method stub
 		
 		Item items = iRepo.findById(item.getItemId()).orElseThrow(()-> new ItemException("Item not available for updation"));
-		return iRepo.save(item);
+		return iRepo.save(items);
 	}
 
 	@Override
