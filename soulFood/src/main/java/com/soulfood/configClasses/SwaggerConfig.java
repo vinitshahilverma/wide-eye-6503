@@ -21,10 +21,11 @@ public class SwaggerConfig {
     }
 
     private ApiInfo getInfo() {
-        return new ApiInfo("SoulFood : Delivery Application", 
+        return new ApiInfo("SoulFood : Online Food Delivery Application", 
                             "This project is developed by Masai School Students \n"+
                              "Team Name - Wide-eye-6503 \n"+
-                             " Team Members \n"+
+                             " Team Members : \n"+
+                             " ------------------- \n"+
                              "Sahil Verma \n"+
                              "Vinay Pathania \n"+
                              "Gourav Pimplekar \n"+
