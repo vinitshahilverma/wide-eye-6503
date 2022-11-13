@@ -31,13 +31,11 @@ public class FoodCart {
     private Integer cartId;
     
     @JsonIgnore
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Customer customer;
 
     @OneToMany (cascade = CascadeType.ALL)
     private List<Item> itemList = new ArrayList<>();
-    
-  
-    
+     
     
 }

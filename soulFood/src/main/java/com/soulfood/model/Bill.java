@@ -1,5 +1,6 @@
 package com.soulfood.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class Bill {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer billId;
-	private LocalDateTime billDate;
+	private LocalDate billDate;
 	
 	@OneToOne (cascade = CascadeType.ALL)
 	private OrderDetails order;

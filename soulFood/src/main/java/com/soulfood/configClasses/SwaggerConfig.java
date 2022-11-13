@@ -28,7 +28,7 @@ public class SwaggerConfig {
                              " ------------------- \n"+
                              "Sahil Verma \n"+
                              "Vinay Pathania \n"+
-                             "Gourav Pimplekar \n"+
+                             "Gaurav Pimplekar \n"+
                              "Krishna Keshav \n"+
                              "Guddu Choudhary", 
                             "1.0", "Term of Services", 
