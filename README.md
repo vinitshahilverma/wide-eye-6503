@@ -10,22 +10,22 @@
 
 # Modules 
 
-1.Bill-Controller
-2.Cart-Controller
-3.Category-Controller
-4.Customer-Controller
-5.Item-Controller
-6.Login-Controller
-7.Order-Controller
-8.Restaurant-Controller
+Bill-Controller
+Cart-Controller
+Category-Controller
+Customer-Controller
+Item-Controller
+Login-Controller
+Order-Controller
+Restaurant-Controller
 
 # Tech-Stack
 
-1.Java
-2.Spring Framework
-3.Spring Boot
-4.Spring Data JPA
-5.Hibernate
-6.MySQL
+Java
+Spring Framework
+Spring Boot
+Spring Data JPA
+Hibernate
+MySQL
 
 
