@@ -60,3 +60,10 @@
 
 ![restaurant](https://user-images.githubusercontent.com/105925560/203563560-c9d92018-f1b1-4c84-a12a-78fbbdfe4ee0.png)
 
+# Team Members
+
+- Shahil Verma
+- Vinay Pathania
+- Gaurav Pimplekar
+- Krishna Keshav
+- Guddu Choudhary
